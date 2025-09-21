@@ -1,6 +1,7 @@
 import { ConfigService } from "@nestjs/config";
 import { DataSource } from "typeorm";
 import { UserEntity } from "./entities/user-entity";
+import { JwtModule } from "@nestjs/jwt";
 
 
 export const DbConnections = [

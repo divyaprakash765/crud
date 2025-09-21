@@ -8,10 +8,18 @@ import { config } from 'process';
 import { UserModule } from './user/user.module';
 import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
-
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
-  imports: [DbModule, ConfigModule.forRoot({ isGlobal : true}), UserModule],
+  imports: [
+    DbModule,
+     ConfigModule.forRoot({ isGlobal: true }),
+      UserModule,
+      JwtModule.register({
+        secret: process.env.JWT_SECRET,
+        signOptions: { expiresIn: '1h' },
+      })
+    ],
   controllers: [UserController],
   providers: [UserService],
 })
